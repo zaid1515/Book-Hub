@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 
 const BookSchema=new mongoose.Schema({
-     Title:{
+     title:{
           type:String,
           required:[true,"Book name is Must"],
           trim:true
      },
-     author:{
+     slug:{
           type:String,
-          required:[true,"Author name is Require"]
      },
      description:{
           type:String,
@@ -22,8 +21,9 @@ const BookSchema=new mongoose.Schema({
      category:{
           type:Array,
      },
-     published_on:{
-          type:Date.now(),
+     createdAt:{
+          type:Date,
+          default:Date.now(),
 
      }
 })
