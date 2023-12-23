@@ -18,8 +18,10 @@ app.use(express.urlencoded({extended:true}))
 // all routes with /api/book are forwarded to book file which has functions for the routes which is in routes folder
 app.use('/api/books',book)
 
-app.get('/test',(req,res)=>{
+app.get('/test/:id',(req,res)=>{
      res.send('Hello by BookHub');
+     console.log(req.params);
+     console.log(req.query);
 })
 
 app.get('*',(req,res)=>{
