@@ -1,0 +1,55 @@
+.homeSec1,.homeSec2{
+     padding:20px 10px;
+     margin: 10px 0px;
+}
+.homeSec1{
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+}
+
+.mainImg{
+     height: 400px;
+     border-radius: 80px;
+}
+.ft-img{
+     height: 280px;
+     border-radius: 80px;
+}
+.home-item{
+     color: rgb(70, 70, 123);
+     padding: 40px 30px;
+     font-size: 1.2rem;
+}
+.feat{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+.feat-head{
+     font-size: 3em;
+     margin: 18px auto;
+     text-align: center;
+}
+.feat{
+     padding: 20px 10px;
+}
+.feat-img-txt{
+     margin: 10px;
+}
+.feat h1,h2{
+     text-align: center;
+}
+.feat h2{
+     color: rgb(55, 55, 108);
+     padding: 20px;
+}
+p{
+     font-family: 'Fredoka',serif;
+     font-weight: 40;
+     padding: 60px;
+}
+/* .strong-txt{
+     color: rgb(255, 164, 164);
+     font-size:2.7rem;
+} */
