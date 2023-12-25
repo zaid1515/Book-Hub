@@ -14,11 +14,9 @@ const Loading = ({ children }) => {
     <div>
       {loading ? (
         <div className="loading-spinner-container">
-        <div className="loading-spinner">
-          <div className="spinner-circle"></div>
-          <div className="loading-text">BookHub</div>
+            <div className="spinner-circle"></div>
+            <div className="loading-text">BookHub</div>
         </div>
-      </div>
       ) : (
         children
       )}

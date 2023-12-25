@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Books.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import BooksPic from '../../images/readpic.png'
+import BooksPic from '../../images/readpic2.png'
 import Loading from '../../components/Loading/Loading'
 
 function Books() {

@@ -26,12 +26,14 @@
 }
 
 .clear {
+     /* border: 0px; */
      margin: 5px 10px;
      background-color: rgb(70, 70, 123);
      color: rgb(255, 240, 240);
      padding: 10px ;
      border-radius: 12px;
      font-size: .92rem;
+     border-color:rgb(119, 119, 202);
 }
 
 ::placeholder {

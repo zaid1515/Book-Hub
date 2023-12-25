@@ -20,7 +20,7 @@ const Footer = () => {
           <i> <FaLinkedinIn /></i>       
           <i> <FaTwitter /></i>     
           <div className="footitem datetime">
-            &copy; {new Date().getFullYear()} BookHub. All rights reserved.
+           Copyright &copy; {new Date().getFullYear()} BookHub. All rights reserved.
           </div>
         </div>
         <div className="items">
