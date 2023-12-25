@@ -1,5 +1,5 @@
 console.log('Welcome to BookHub')
-// the data.jdon is being added to the cloud database directly from internet using insert doc.
+// the data.json is being added to the cloud database directly from internet using insert doc.
 const express = require('express');    
 const app=express()
 const port=process.env.PORT || 5000
@@ -17,6 +17,8 @@ app.use(express.urlencoded({extended:true}))
 
 // all routes with /api/book are forwarded to book file which has functions for the routes which is in routes folder
 app.use('/api/books',book)
+// to introduce the uploads folder to the server
+app.use("/uploads",express.static('uploads'))
 
 app.get('/test/:id',(req,res)=>{
      res.send('Hello by BookHub');

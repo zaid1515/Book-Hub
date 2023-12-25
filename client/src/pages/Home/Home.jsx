@@ -23,7 +23,7 @@ function Home() {
                     <h1 className="feat-head">Our Features</h1>
                     <div className="ft1 feat">
                          <p>
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione pariatur tempora debitis aliquam, beatae quam mollitia ducimus nobis commodi sunt?
+                         Effortlessly organize your literary world with BookHub's intuitive book management system. From creating your personalized library to updating book details, enjoy seamless control over your reading journey. Dive into the joy of efficient book organization and discovery.
                          </p>
                          <div className='feat-img-txt'>
                               <img className='ft-img' src={ft2} alt="img upload" />
@@ -36,7 +36,7 @@ function Home() {
                               <h2>Image Upload</h2>
                          </div>
                          <p>
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione pariatur tempora debitis aliquam, beatae quam mollitia ducimus nobis commodi sunt?
+                         Bring your bookshelf to life! Add a personal touch to your collection by uploading vibrant cover images. Showcase your favorite reads in style and make browsing visually delightful. BookHub makes it easy to enhance your literary haven with custom book cover images for a truly immersive experience.
                          </p>
                     </div>
                </div>

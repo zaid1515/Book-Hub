@@ -42,14 +42,9 @@
 }
 .feat h2{
      color: rgb(55, 55, 108);
-     padding: 20px;
 }
 p{
      font-family: 'Fredoka',serif;
      font-weight: 40;
-     padding: 60px;
+     padding:  20px 40px;
 }
-/* .strong-txt{
-     color: rgb(255, 164, 164);
-     font-size:2.7rem;
-} */

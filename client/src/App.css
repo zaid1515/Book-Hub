@@ -5,3 +5,6 @@
      border-radius: 60px;
      border: 2px solid #d4afaf;
 }
+button{
+     cursor: pointer;
+}
