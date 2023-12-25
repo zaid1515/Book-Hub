@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import './Books.css'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
-import BooksPic from'../../images/readpic2.png'
+import { Link } from 'react-router-dom'
+import BooksPic from '../../images/readpic.png'
+import Loading from '../../components/Loading/Loading'
 
 function Books() {
      const [books, setBooks] = useState([])
      const [category, setCategory] = useState('')
      const [stars, setStars] = useState(0);
      const [dropdown, setdropdown] = useState([]);
-     const [isLoading,setIsLoading]=useState(true);
-     const [error,setError]=useState("")
+     const [isLoading, setIsLoading] = useState(true);
+     const [error, setError] = useState("")
 
      const baseURL = "http://localhost:5000/api/books"
      var url = baseURL;
@@ -21,17 +22,20 @@ function Books() {
      useEffect(() => {
           const fetchBook = async () => {
                try {
-
+                    setIsLoading(true)
                     console.log(url);
-                    const res = await axios.get(url);
-                    
-                    if (res.status!=200) {
-                         throw new Error("Failted to fetch books")
-                    }
-                    console.log(res.data.allBooks);
-                    // Update the state with the fetched data
-                    setBooks(res.data.allBooks);
-                    setIsLoading(false);
+                    setTimeout(async () => {
+                         const res = await axios.get(url);
+
+                         if (res.status !== 200) {
+                              throw new Error("Failed to fetch books");
+                         }
+
+                         console.log(res.data.allBooks);
+                         // Update the state with the fetched data
+                         setBooks(res.data.allBooks);
+                         setIsLoading(false);
+                    }, 1200);
                } catch (error) {
                     console.error('Error fetching books:', error);
                     setError("Error fetching data. Please try again.")
@@ -96,25 +100,27 @@ function Books() {
                     <img src={BooksPic} alt="" />
                </div>
                <div className="books-list">
-               {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-          <ul className="books">
-          {books.map((item) => (
-            <li key={item._id}>
-              <Link to={`/books/${item.slug}`}>
-                <img
-                  src={`http://localhost:5000/uploads/${item.thumbnail}`}
-                  alt={item.title}
-                />
-                <h3>{item.title}</h3>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+                    {isLoading ? (
+                         <Loading/>
+                    ) : error ? (
+                         <p>{error}</p>
+                    ) : (
+                         <ul className="books">
+                              {books.map((item) => (
+                                   <li key={item._id}>
+                                        <div>
+                                             <Link to={`/books/${item.slug}`}>
+                                                  <img
+                                                       src={`http://localhost:5000/uploads/${item.thumbnail}`}
+                                                       alt={item.title}
+                                                  />
+                                                  <h3>{item.title}</h3>
+                                             </Link>
+                                        </div>
+                                   </li>
+                              ))}
+                         </ul>
+                    )}
                </div>
           </div>
      )

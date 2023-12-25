@@ -78,8 +78,8 @@ ul.books li a {
 }
 
 ul.books img {
-     height: 240px;
-     width: 180px;
+     height: 260px;
+     width: 190px;
      border-radius: 22px;
      border: 4px solid rgb(70, 70, 123);
      margin: 8px 0px;
@@ -88,12 +88,17 @@ ul.books img {
      /* border: 2px solid red; */
      /* Outer border color */
      box-shadow: 0 0 0 3px rgb(255, 196, 196);
+     transition: scale 0.4s ease-in-out;
 }
 
 ul.books h3 {
      text-align: center;
      font-weight: 300;
      font-size: 1.4rem;
+     transition: scale 0.4s ease-in-out;
+}
+ul.books img:hover,ul.books li a h3:hover{
+     scale: 1.08;
 }
 .bookspg-item img{
      height: 250px;
@@ -102,3 +107,5 @@ ul.books h3 {
      top: 140px;
      right: 300px;
 }
+
+   
