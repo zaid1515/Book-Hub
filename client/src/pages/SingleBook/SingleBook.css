@@ -1,0 +1,62 @@
+.onebook{
+     margin: 60px 50px;
+     color: rgb(70, 70, 123);
+}
+.bookContent{
+     display: flex;
+}
+.navigation-btn{
+    display: flex;
+    justify-content: center;
+    margin: 26px;
+}
+.navigation-btn button{
+     margin: 5px 10px;
+     background-color: rgb(70, 70, 123);
+     color: rgb(255, 240, 240);
+     padding: 10px ;
+     border-radius: 12px;
+     font-size: 1rem;
+     border-color:rgb(119, 119, 202);
+     transition: background-color 0.4s ease-in-out;
+}
+.navigation-btn button:hover{
+     background-color:rgb(84, 84, 143) ;
+}
+.bookImg img{
+     height: 520px;
+     width:390px;
+     border-radius: 32px;
+     border: 6px solid rgb(252, 199, 199);
+     display: block;
+}
+
+.onebook-item{
+     margin:10px 24px;
+}
+.oneBook-title{
+     font-size: 3rem;
+     text-align: center;
+     margin: 14px 0px 24px 0px;
+}
+.onebook p{
+     font-family: 'Fredoka',serif;
+     /* font-weight: 600; */
+     font-size: 1.3rem;
+     /* padding:  20px; */
+     /* text-align: center; */
+}
+.oneBook-category,.published{
+     margin: 26px 0px;
+}
+.oneBook-rating{
+     margin: 26px 0px;
+     font-size: 1.18rem;
+}
+.cat-list{
+     margin: 12px 32px;
+     font-size: 1.18rem;
+}
+.date-book{
+     margin: 0px 14px 0px 0px;
+}
