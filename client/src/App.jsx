@@ -6,6 +6,7 @@ import Loading from './components/Loading/Loading'
 import Home from './pages/Home/Home'
 import Books from './pages/Books/Books'
 import SingleBook from './pages/SingleBook/SingleBook'
+import CreateBook from './pages/CreateBook/CreateBook'
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
           <Route
             path='/books/:slug'
             element={<Loading><SingleBook /></Loading>}
+          />
+          <Route
+           path='/create'
+           element={ <Loading> <CreateBook/></Loading> }
           />
         </Routes>
         <Footer />
