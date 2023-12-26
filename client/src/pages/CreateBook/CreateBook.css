@@ -1,17 +1,17 @@
 .newbook{
-     margin: 60px 50px;
+     margin: 40px 40px 20px 40px;
      color: rgb(70, 70, 123);
 }
 .bookInput{
      display: flex;
 }
-.navigation-btn{
+.newbook-navigation-btn{
     display: flex;
     justify-content: center;
-    margin: 26px;
+    /* margin:8px 26px; */
 }
-.navigation-btn button{
-     margin: 5px 10px;
+.newbook-navigation-btn button{
+     margin: 0px 10px;
      background-color: rgb(70, 70, 123);
      color: rgb(255, 240, 240);
      padding: 10px ;
@@ -20,7 +20,7 @@
      border-color:rgb(119, 119, 202);
      transition: background-color 0.4s ease-in-out;
 }
-.navigation-btn button:hover{
+.newbook-navigation-btn button:hover{
      background-color:rgb(84, 84, 143) ;
 }
 .bookInputImg img{
@@ -32,28 +32,44 @@
 }
 
 .newbook-item{
-     margin:10px 24px;
-}
-.newBook-title{
-     font-size: 3rem;
-     text-align: center;
-     margin: 14px 0px 24px 0px;
+     margin:4px 24px;
 }
 .newbook p{
      font-family: 'Fredoka',serif;
-     /* font-weight: 600; */
-     font-size: 1.3rem;
-     /* padding:  20px; */
-     /* text-align: center; */
-}
-.newBook-category,.published{
-     margin: 26px 0px;
-}
-.newBook-rating{
-     margin: 26px 0px;
-     font-size: 1.18rem;
+     font-size: 1.2rem;
 }
 
-.date-book{
-     margin: 0px 14px 0px 0px;
+.newbook .inp-div{
+     margin: 14.5px 10px;
+}
+.newbook p{
+     margin: 0px 10px 6px 6px;
+     font-size: 1.3rem;
+}
+.newbook input ,.newbook textarea{
+     color: rgb(70, 70, 123);
+     background-color: rgb(255, 240, 240);
+     border: 2px solid rgb(111, 111, 186);
+     padding: 4px 10px;
+     /* margin: 4px; */
+     font-weight: 300;
+     border-radius: 8px;
+     font-size: 1.2rem;
+     width: 100%;
+}
+
+.newbook select {
+     color: rgb(70, 70, 123);
+     background-color: rgb(255, 240, 240);
+     border: 2px solid rgb(111, 111, 186);
+     padding: 8px 10px;
+     margin: 4px 8px;
+     border-radius: 8px;
+     font-size: 01rem;
+     width: 20%;
+     cursor: pointer;
+     text-align: center;
+}
+.newBook-title{
+     margin:0px 10px 14.5px 10px;
 }

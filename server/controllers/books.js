@@ -32,7 +32,7 @@ const getOneBook = async (req, res) => {
                console.log(`Required book was found`);
           }
      } catch (e) {
-          res.status(500).json({ msg: e });
+          res.status(500).json({msg:e});
      }
 };
 
@@ -44,7 +44,7 @@ const createBook=async(req,res)=>{
           res.status(200).json({success:true,book:newBook})
           
      } catch (error) {
-          res.status(500).json({msg:e})
+          res.status(500).json({msg:error})
      }
 }
 module.exports = { getAllBooks, getOneBook ,createBook};

@@ -15,18 +15,45 @@ function CreateBook() {
           createdAt: new Date()
      })
      const [post, setPost] = useState(false);
+     const [msg,setMsg]=useState('')
 
      const postBook = async (e) => {
           e.preventDefault();
           try {
-               const res = await axios.post("http://localhost:5000/api/books", newBook)
+               const res = await axios.post("http://localhost:5000/api/books", newBook);
                if (res.data.success) {
-                    setPost(true)
+                    setMsg(`Book Created Successfully!`);
+                    setPost(true);
+                    setTimeout(() => {
+                         setPost(false);
+                         setMsg('');
+                    }, 3000);
                }
+               console.log(res.data.newBook);
           } catch (e) {
-               console.error('Error posting book:', error);
+               console.error('Error posting book:', e);
+               setMsg('Failed to create a Book! Please try again.');
+               setTimeout(() => {
+                    setMsg('');
+               }, 3000);
           }
-     }
+     };
+     
+
+     useEffect(() => {
+          if (post) {
+               setNewBook({
+                    title: '',
+                    slug: '',
+                    description: '',
+                    thumbnail: '',
+                    stars: 0,
+                    category: [],
+                    createdAt: new Date()
+               })
+          }
+
+     }, [post])
 
      const handleChange = (e) => {
           const { name, value } = e.target;
@@ -35,22 +62,36 @@ function CreateBook() {
                // [e.target.name]: e.target.value
                [name]: value
           })
+          console.log(newBook);
      }
 
      const handleCategoryChange = (e) => {
-
+          setNewBook({
+               ...newBook,
+               category: e.target.value.split(',').map((category) => category.trim())
+          })
      }
 
+     const handleFileInput=async(e)=>{
+          // files are inserted as an array
+          const file=e.target.files[0];
+          setNewBook({
+               ...newBook,
+               thumbnail:file
+          })
+     }
+      
+      
      return (
-          <div className="newbook">
-               <form className="bookInput" onSubmit={postBook}>
+          <form  onSubmit={postBook} encType="multipart/form-data">
+               <div className="newbook bookInput">
                     <div className="bookInputImg newbook-item">
-                         <img src={Select} alt="preview" />
+                         {newBook.thumbnail?(<img src={URL.createObjectURL(newBook.thumbnail)} alt="preview" />):(<img src={Select} alt="preview" />)}
                     </div>
 
-                    <div className="InpDetails">
-                         <div className="newBook-title inp-div">
-                              <p>Title:</p>
+                    <div className="InpDetails newbook-item">
+                         <div className="newBook-title">
+                              <p style={{ display: 'inline' }}>Title:</p>
                               <input className='title-inp' type="text" name='title' value={newBook.title} onChange={handleChange} />
                          </div>
 
@@ -60,42 +101,56 @@ function CreateBook() {
                          </div>
 
                          <div className="newBook-desc inp-div">
-                              <p >Description</p>
-                              <textarea name="description" id="desc-inp" className='desc-inp' cols="60" rows="6" value={newBook.description} onChange={handleChange}></textarea>
+                              <p >Description:</p>
+                              <textarea name="description" id="desc-inp" className='desc-inp' cols="45" rows="3" value={newBook.description} onChange={handleChange}></textarea>
                          </div>
 
 
                          <div className="newBook-category inp-div">
-                              <p>Category</p>
+                              <p>Category: <span>()</span></p>
                               <input type="text" name='category' value={newBook.category} onChange={handleCategoryChange} />
                          </div>
 
                          <div className="newBook-rating inp-div">
-                              <p style={{ display: 'inline' }}>Stars</p>
-                              <input type="number" name="stars" id="newBook-stars" className='newBook-stars' value={newBook.stars} onChange={handleChange} />
+                              <p style={{ display: 'inline' }}>Stars:</p>
+                              <select name="stars" id="newBook-stars" className='newBook-stars'
+                                   value={newBook.stars} onChange={handleChange}>
+                                   <option value="5">5</option>
+                                   <option value="4">4</option>
+                                   <option value="3">3</option>
+                                   <option value="2">2</option>
+                                   <option value="1">1</option>
+                              </select>
                          </div>
-
+                         
                          <div className="published inp-div">
                               <p style={{ display: 'inline' }}>Created At:</p>
-                              <input type="datetime-local" name="createdAt" id="book-created" value={newBook.createdAt} onChange={handleChange} />
+                              <input style={{width:'55%'}}type="datetime-local" name="createdAt" id="book-created" value={newBook.createdAt} onChange={handleChange} />
                          </div>
+                         <div className="inp-div">
+                         <p style={{ display: 'inline' }}>Thumbnail:</p>
+                              <input style={{width:'70%'}} type="file" name="thumbnail" id="inp-book-img" 
+                              accept='image/*' onChange={handleFileInput} />
+                         </div>
+                              <p>{msg}</p>
                     </div>
 
-               </form >
-
-               <div className="navigation-btn">
-                    <Link to={'/books'}>
-                         <button className="back-to-book">
-                              Back to Books
-                         </button>
-                    </Link>
-                    <Link to={'/books'}>
+                    
+               </div>
+               <div>
+                    <div className="newbook-navigation-btn">
+                         <Link to={'/books'}>
+                              <button className="back-to-book">
+                                   Back to Books
+                              </button>
+                         </Link>
                          <button className="submit" type='submit'>
                               Submit
                          </button>
-                    </Link>
+                    </div>
                </div>
-          </div >
+
+          </form >
      )
 }
 
