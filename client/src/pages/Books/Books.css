@@ -112,4 +112,8 @@ ul.books img:hover,ul.books li a h3:hover{
      right: 300px;
 }
 
-   
+.no-books{
+     color: rgb(70, 70, 123);
+     font-size: 2rem;
+     text-align: center;
+}

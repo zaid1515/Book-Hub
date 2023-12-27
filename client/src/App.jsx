@@ -7,6 +7,7 @@ import Home from './pages/Home/Home'
 import Books from './pages/Books/Books'
 import SingleBook from './pages/SingleBook/SingleBook'
 import CreateBook from './pages/CreateBook/CreateBook'
+import EditBook from './pages/EditBook/EditBook'
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
           <Route
            path='/create'
            element={ <Loading> <CreateBook/></Loading> }
+          />
+          <Route 
+          path='/edit/:slug'
+          element={<Loading> <EditBook/> </Loading>}
           />
         </Routes>
         <Footer />

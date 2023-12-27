@@ -16,7 +16,7 @@ const getAllBooks = async (req, res) => {
           console.log(filters);
           
           const allBooks = await books.find(filters);
-          console.log(allBooks);
+          // console.log(allBooks);
           res.status(200).json({ allBooks });
      } catch (e) {
           res.status(500).json({ msg: e });
@@ -39,21 +39,17 @@ const getOneBook = async (req, res) => {
 
 const createBook = async (req, res) => {
      try {
-        // Access the uploaded file from req.file
-        const { title, slug, description, stars, category, createdAt } = req.body;
-        const thumbnail = req.file;
 
         console.log(req.file);
-        console.log(req.thumbnail);
-        // Create a new book with both form fields and the uploaded thumbnail
+        console.log(req.body);
+        
         const newBook = await books.create({
-           title,
-           slug,
-           description,
-           stars,
-           category,
-           createdAt,
-           thumbnail: thumbnail.filename, 
+          title: req.body.title,
+          slug: req.body.slug,
+          stars: req.body.stars,
+          description: req.body.description,
+          category: req.body.category,
+          thumbnail: req.file.filename,
         });
   
         console.log(newBook);
@@ -64,4 +60,30 @@ const createBook = async (req, res) => {
      }
   };
   
-module.exports = { getAllBooks, getOneBook ,createBook};
+const updateBook=async(req,res)=>{
+     try {
+          const {id:bookId}=req.params;
+
+          const updated={
+               title:req.body.title,
+               slug:req.body.slug,
+               description:req.body.description,
+               category:req.body.category,
+               createdAt:req.body.createdAt,
+               stars:req.body.stars,
+          }
+          if (req.file) {
+               updated.thumbnail=req.file.filename
+          }
+          const updatedbook=await books.findByIdAndUpdate(bookId,updated,{
+               new:true,
+               runValidators:true,
+          });
+
+          console.log(updateBook);
+          res.status(200).json({success:true,updatedbook:updatedbook})
+     } catch (error) {
+          
+     }
+}
+module.exports = { getAllBooks, getOneBook ,createBook,updateBook};

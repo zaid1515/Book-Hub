@@ -26,7 +26,9 @@ function CreateBook() {
                formData.append("slug", newBook.slug);
                formData.append("stars", newBook.stars);
                formData.append("description", newBook.description);
-               formData.append("category", newBook.category);
+               newBook.category.forEach((category) => {
+                    formData.append("category", category);
+                  });
                formData.append("thumbnail", newBook.thumbnail);
                console.log(formData);
                
@@ -118,7 +120,7 @@ function CreateBook() {
 
 
                          <div className="newBook-category inp-div">
-                              <p>Category: <span>()</span></p>
+                              <p>Category: </p>
                               <input type="text" name='category' value={newBook.category} onChange={handleCategoryChange} />
                          </div>
 

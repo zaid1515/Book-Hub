@@ -7,8 +7,8 @@ function SingleBook() {
   const [oneBook, setOneBook] = useState([])
   const params = useParams();
   const slug = params.slug;
-  console.log(params);
-  console.log(slug);
+  // console.log(params);
+  // console.log(slug);
 
   const url = `http://localhost:5000/api/books/${slug}`
   
@@ -18,11 +18,10 @@ function SingleBook() {
       try {
         const res = await axios.get(url)
         
-        console.log(res.data);
         console.log(res.data.oneBook);
         setOneBook(res.data.oneBook)
       } catch (e) {
-        
+        console.error(e);
       }
     }
     fetchBook()
@@ -84,7 +83,7 @@ function SingleBook() {
             Back to Books
           </button>
         </Link>
-        <Link to={'/edit'}>
+        <Link to={`/edit/${oneBook?.slug}`}>
           <button className="edit">
             Edit Book
           </button>

@@ -15,8 +15,14 @@ function Books() {
 
      const baseURL = "http://localhost:5000/api/books"
      var url = baseURL;
-     if (category || stars) {
+     if (category && stars!=0) {
           url += `?category=${category}&stars=${stars}`
+     }
+     else if (category) {
+          url+=`?category=${category}`
+     }
+     else if (stars!=0) {
+          url+=`?stars=${stars}`
      }
 
      useEffect(() => {
@@ -104,22 +110,22 @@ function Books() {
                          <Loading/>
                     ) : error ? (
                          <p>{error}</p>
-                    ) : (
-                         <ul className="books">
-                              {books.map((item) => (
-                                   <li key={item._id}>
-                                        <div>
-                                             <Link to={`/books/${item.slug}`}>
-                                                  <img
-                                                       src={`http://localhost:5000/uploads/${item.thumbnail}`}
-                                                       alt={item.title}
-                                                  />
-                                                  <h3>{item.title}</h3>
-                                             </Link>
-                                        </div>
-                                   </li>
-                              ))}
-                         </ul>
+                    ) : books.length>0?(<ul className="books">
+                    {books.map((item) => (
+                         <li key={item._id}>
+                              <div>
+                                   <Link to={`/books/${item.slug}`}>
+                                        <img
+                                             src={`http://localhost:5000/uploads/${item.thumbnail}`}
+                                             alt={item.title}
+                                        />
+                                        <h3>{item.title}</h3>
+                                   </Link>
+                              </div>
+                         </li>
+                    ))}
+               </ul>):(
+                       <p className='no-books'>No Books found!</p>  
                     )}
                </div>
           </div>
