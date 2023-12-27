@@ -8,6 +8,7 @@ import Books from './pages/Books/Books'
 import SingleBook from './pages/SingleBook/SingleBook'
 import CreateBook from './pages/CreateBook/CreateBook'
 import EditBook from './pages/EditBook/EditBook'
+import About from './pages/About/About'
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
           <Route 
           path='/edit/:slug'
           element={<Loading> <EditBook/> </Loading>}
+          />
+          <Route 
+          path='/about'
+          element={<Loading> <About/> </Loading>}
           />
         </Routes>
         <Footer />

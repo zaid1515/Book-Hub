@@ -1,6 +1,6 @@
 const express = require('express');     
 const router = express.Router();
-const { getAllBooks, getOneBook, createBook ,updateBook} = require('../controllers/books');
+const { getAllBooks, getOneBook, createBook ,updateBook, deleteBook} = require('../controllers/books');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -17,5 +17,5 @@ const upload = multer({ storage: storage });
 
 router.route('/').get(getAllBooks).post(upload.single('thumbnail'), createBook);
 router.route('/:slug').get(getOneBook);
-router.route('/:id').put(upload.single('thumbnail') , updateBook)
+router.route('/:id').put(upload.single('thumbnail') , updateBook).delete(deleteBook)
 module.exports = router;

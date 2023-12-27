@@ -17,7 +17,7 @@
   letter-spacing: 1px;
   color: rgba(50, 126, 94, 255);
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-family: "Poppins", serif;
   font-weight: 400;
   margin: 0px;
@@ -57,6 +57,7 @@ nav ul li {
 nav ul {
   list-style: none;
   margin-left: 1rem;
+  justify-content: center;
 }
 
 
@@ -68,8 +69,16 @@ nav li:hover {
 
 .main-logo {
   height: 48px;
-  margin-right: 500px;
+  margin-right: 280px;
+  margin-left: 80px;
   border-radius: 24px;
 }
 
-
+.add-book-link{
+  background-color: white;
+  margin-left: 25px;
+  color: rgb(240, 157, 157);
+}
+.add-book-link:hover{
+  color: rgb(108, 108, 164);
+}

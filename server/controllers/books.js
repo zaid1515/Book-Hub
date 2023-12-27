@@ -30,6 +30,7 @@ const getOneBook = async (req, res) => {
                res.status(404).json({ msg: `No book with slug: ${req.params.slug}` });
           } else {
                res.status(200).json({ oneBook });
+               console.log(oneBook);
                console.log(`Required book was found`);
           }
      } catch (e) {
@@ -40,8 +41,8 @@ const getOneBook = async (req, res) => {
 const createBook = async (req, res) => {
      try {
 
-        console.log(req.file);
-        console.log(req.body);
+     //    console.log(req.file);
+     //    console.log(req.body);
         
         const newBook = await books.create({
           title: req.body.title,
@@ -49,9 +50,12 @@ const createBook = async (req, res) => {
           stars: req.body.stars,
           description: req.body.description,
           category: req.body.category,
-          thumbnail: req.file.filename,
+          createdAt:req.body.createdAt,
+          thumbnail:req.file.filename
         });
-  
+
+        
+
         console.log(newBook);
         res.status(200).json({ success: true, book: newBook });
      } catch (error) {
@@ -83,7 +87,21 @@ const updateBook=async(req,res)=>{
           console.log(updateBook);
           res.status(200).json({success:true,updatedbook:updatedbook})
      } catch (error) {
-          
+          res.status(500).json({ success: false, msg: error.message });
      }
 }
-module.exports = { getAllBooks, getOneBook ,createBook,updateBook};
+
+const deleteBook=async(req,res)=>{
+     try {
+
+          const {id:bookId}=req.params;
+          const deleted=await books.findByIdAndDelete(bookId)
+          console.log(deleted);
+          res.status(200).json({success:true,msg:"Book Deleted successfully",deleteBook:deleted})
+
+     } catch (error) {
+          res.status(500).json({ success: false, msg: error.message });
+     }
+}
+
+module.exports = { getAllBooks, getOneBook ,createBook,updateBook,deleteBook};

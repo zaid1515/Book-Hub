@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import './SingleBook.css'
 
 function SingleBook() {
-  const [oneBook, setOneBook] = useState([])
+  const [oneBook, setOneBook] = useState([]);
+  const [bookDelete , setBookDelete] =useState(false);
   const params = useParams();
   const slug = params.slug;
+  const navigate=useNavigate();
   // console.log(params);
   // console.log(slug);
 
@@ -27,10 +29,27 @@ function SingleBook() {
     fetchBook()
   }, [])
   
-  const publishedOn=new Date(oneBook.createdAt)
-  const day=publishedOn.toLocaleDateString(undefined,{day:'numeric'})
-  const month=publishedOn.toLocaleDateString(undefined,{month:'short'})
-  const year=publishedOn.toLocaleDateString(undefined,{year:'numeric'})
+  const delurl = `http://localhost:5000/api/books/${oneBook._id}`
+
+  const deleteBook = async () => {
+    try {
+      const res = await axios.delete(delurl)
+      
+      setBookDelete(true);
+      setTimeout(() => {
+        // Use history object to navigate back to /books
+        navigate('/books');
+      }, 5000);
+      
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  const publishedOn = new Date(oneBook.createdAt)
+  const day = publishedOn.toLocaleDateString(undefined, { day: 'numeric' })
+  const month = publishedOn.toLocaleDateString(undefined, { month: 'short' })
+  const year = publishedOn.toLocaleDateString(undefined, { year: 'numeric' })
 
 
   function Stars(props) {
@@ -46,8 +65,9 @@ function SingleBook() {
         <div className="bookImg onebook-item">
           <img src={`http://localhost:5000/uploads/${oneBook?.thumbnail}`} alt="" />
         </div>
-
-        <div className="bookDetails onebook-item">
+        {bookDelete?(<p className='deleted'>Book Deleted Successfully</p>):
+        (
+          <div className="bookDetails onebook-item">
           <h1 className="oneBook-title">
             {oneBook?.title?.toUpperCase()}</h1>
           {/* ?. is called Optional chaining */}
@@ -66,17 +86,20 @@ function SingleBook() {
             </ul>
           </div>
           <div className="published">
-        <p>
-          <span className='date-book'>Published On:</span> 
-          <span>{`${day} `}</span>
-          <span>{` ${month} `}</span>
-          <span>{` ${year} `}</span>
-        </p>
+            <p>
+              <span className='date-book'>Published On:</span>
+              <span>{`${day} `}</span>
+              <span>{` ${month} `}</span>
+              <span>{` ${year} `}</span>
+            </p>
 
-      </div>
+          </div>
         </div>
-      </div>
-      
+
+        )}
+
+              </div>
+
       <div className="navigation-btn">
         <Link to={'/books'}>
           <button className="back-to-book">
@@ -88,6 +111,11 @@ function SingleBook() {
             Edit Book
           </button>
         </Link>
+
+        <button onClick={deleteBook} className="edit">
+          Delete Book
+        </button>
+
 
       </div>
     </div>
