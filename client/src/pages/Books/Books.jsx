@@ -16,7 +16,7 @@ function Books() {
      const baseURL = "http://localhost:5000/api/books"
      var url = baseURL;
      if (category || stars) {
-          url += `?category=${category}`
+          url += `?category=${category}&stars=${stars}`
      }
 
      useEffect(() => {

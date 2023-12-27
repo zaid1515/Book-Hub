@@ -15,12 +15,22 @@ function CreateBook() {
           createdAt: new Date()
      })
      const [post, setPost] = useState(false);
-     const [msg,setMsg]=useState('')
+     const [msg, setMsg] = useState('')
 
      const postBook = async (e) => {
           e.preventDefault();
           try {
-               const res = await axios.post("http://localhost:5000/api/books", newBook);
+               // binary files cannot be send in json therefore use formData....
+               const formData = new FormData();
+               formData.append("title", newBook.title);
+               formData.append("slug", newBook.slug);
+               formData.append("stars", newBook.stars);
+               formData.append("description", newBook.description);
+               formData.append("category", newBook.category);
+               formData.append("thumbnail", newBook.thumbnail);
+               console.log(formData);
+               
+               const res = await axios.post("http://localhost:5000/api/books", formData);
                if (res.data.success) {
                     setMsg(`Book Created Successfully!`);
                     setPost(true);
@@ -38,7 +48,7 @@ function CreateBook() {
                }, 3000);
           }
      };
-     
+
 
      useEffect(() => {
           if (post) {
@@ -72,21 +82,22 @@ function CreateBook() {
           })
      }
 
-     const handleFileInput=async(e)=>{
+     const handleFileInput = async (e) => {
           // files are inserted as an array
-          const file=e.target.files[0];
+          const file = e.target.files[0];
+          console.log(file);
           setNewBook({
                ...newBook,
-               thumbnail:file
+               thumbnail: file
           })
      }
-      
-      
+
+
      return (
-          <form  onSubmit={postBook} encType="multipart/form-data">
+          <form onSubmit={postBook} encType="multipart/form-data">
                <div className="newbook bookInput">
                     <div className="bookInputImg newbook-item">
-                         {newBook.thumbnail?(<img src={URL.createObjectURL(newBook.thumbnail)} alt="preview" />):(<img src={Select} alt="preview" />)}
+                         {newBook.thumbnail ? (<img src={URL.createObjectURL(newBook.thumbnail)} alt="preview" />) : (<img src={Select} alt="preview" />)}
                     </div>
 
                     <div className="InpDetails newbook-item">
@@ -122,20 +133,20 @@ function CreateBook() {
                                    <option value="1">1</option>
                               </select>
                          </div>
-                         
+
                          <div className="published inp-div">
                               <p style={{ display: 'inline' }}>Created At:</p>
-                              <input style={{width:'55%'}}type="datetime-local" name="createdAt" id="book-created" value={newBook.createdAt} onChange={handleChange} />
+                              <input style={{ width: '55%' }} type="datetime-local" name="createdAt" id="book-created" value={newBook.createdAt} onChange={handleChange} />
                          </div>
                          <div className="inp-div">
-                         <p style={{ display: 'inline' }}>Thumbnail:</p>
-                              <input style={{width:'70%'}} type="file" name="thumbnail" id="inp-book-img" 
-                              accept='image/*' onChange={handleFileInput} />
+                              <p style={{ display: 'inline' }}>Thumbnail:</p>
+                              <input style={{ width: '70%' }} type="file" name="thumbnail" id="inp-book-img"
+                                   accept='image/*' onChange={handleFileInput} />
                          </div>
-                              <p>{msg}</p>
+                         <p>{msg}</p>
                     </div>
 
-                    
+
                </div>
                <div>
                     <div className="newbook-navigation-btn">

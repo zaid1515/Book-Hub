@@ -1,4 +1,5 @@
 const books = require('../models/BookSchema');
+const multer=require('multer')
 
 const getAllBooks = async (req, res) => {
      try {
@@ -36,15 +37,31 @@ const getOneBook = async (req, res) => {
      }
 };
 
-const createBook=async(req,res)=>{
+const createBook = async (req, res) => {
      try {
-          const newBook=await books.create(req.body);
-          console.log(req.body);
-          console.log(newBook);
-          res.status(200).json({success:true,book:newBook})
-          
+        // Access the uploaded file from req.file
+        const { title, slug, description, stars, category, createdAt } = req.body;
+        const thumbnail = req.file;
+
+        console.log(req.file);
+        console.log(req.thumbnail);
+        // Create a new book with both form fields and the uploaded thumbnail
+        const newBook = await books.create({
+           title,
+           slug,
+           description,
+           stars,
+           category,
+           createdAt,
+           thumbnail: thumbnail.filename, 
+        });
+  
+        console.log(newBook);
+        res.status(200).json({ success: true, book: newBook });
      } catch (error) {
-          res.status(500).json({msg:error})
+     //    console.error(error);
+        res.status(500).json({ success: false, msg: error.message });
      }
-}
+  };
+  
 module.exports = { getAllBooks, getOneBook ,createBook};
