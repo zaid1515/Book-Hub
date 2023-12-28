@@ -117,7 +117,7 @@ function Books() {
                               <div>
                                    <Link to={`/books/${item.slug}`}>
                                         <img
-                                             src={`http://localhost:5000/uploads/${item.thumbnail}`}
+                                             src={`${URI}/${item.thumbnail}`}
                                              alt={item.title}
                                         />
                                         <h3>{item.title}</h3>
