@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended:true}))
 // all routes with /api/book are forwarded to book file which has functions for the routes which is in routes folder
 app.use('/api/books',book)
 // configuring Express to serve static files (like images, CSS files, etc.) located in the "uploads" directory and make them accessible under the "/uploads" route
-app.use("/uploads",express.static('uploads'))
+app.use(express.static(path.join(__dirname, "./uploads", "../uploads")));
 
 app.get('/test/:id',(req,res)=>{
      res.send('Hello by BookHub');
