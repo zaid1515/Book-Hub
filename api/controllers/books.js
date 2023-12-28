@@ -1,5 +1,7 @@
 const books = require('../models/BookSchema');
 const multer=require('multer')
+const path = require('path');
+const fs = require('fs');
 
 const getAllBooks = async (req, res) => {
      try {
@@ -95,7 +97,12 @@ const deleteBook=async(req,res)=>{
      try {
 
           const {id:bookId}=req.params;
+          const book=await books.findById(bookId);
+          const thumbnail=book.thumbnail;
+          const filePath=`./uploads/${thumbnail}`
+          fs.unlinkSync(filePath);
           const deleted=await books.findByIdAndDelete(bookId)
+
           console.log(deleted);
           res.status(200).json({success:true,msg:"Book Deleted successfully",deleteBook:deleted})
 

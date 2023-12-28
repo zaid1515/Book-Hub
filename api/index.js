@@ -8,6 +8,7 @@ const cors = require('cors');
 const connectDB=require('./db/connect')
 const book=require('./routes/books_route')
 const path = require('path');
+const fs = require('fs');
 
 // cors is cross-origin-resource-sharing for fetching data from react-app
 app.use(cors())
