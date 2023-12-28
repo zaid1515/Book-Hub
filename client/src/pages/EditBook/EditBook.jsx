@@ -41,7 +41,7 @@ function EditBook() {
                formData.append("thumbnail", book.thumbnail);
                console.log(formData);
                
-               const res = await axios.put(`http://localhost:5000/api/books/${book._id}`, formData);
+               const res = await axios.put(`${URI}/api/books/${book._id}`, formData);
                if (res.data.success) {
                     setMsg(`Book Updated Successfully!`);
                     setUpdate(true);
@@ -93,7 +93,7 @@ function EditBook() {
           <form onSubmit={updateBook} encType="multipart/form-data">
                <div className="newbook bookInput">
                     <div className="bookInputImg newbook-item">
-                          {newThumbnail?(<img src={URL.createObjectURL(book?.thumbnail)} alt="preview" />):(<img src={`http://localhost:5000/uploads/${book?.thumbnail}`} alt="preview" />)}
+                          {newThumbnail?(<img src={URL.createObjectURL(book?.thumbnail)} alt="preview" />):(<img src={`${URI}/${book?.thumbnail}`} alt="preview" />)}
                     </div>
 
                     <div className="InpDetails newbook-item">
