@@ -17,7 +17,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route
-            path='/home'
+            path='/'
             element={<Loading><Home /></Loading>}
           />
           <Route
