@@ -3,6 +3,7 @@ import axios from 'axios'
 import './CreateBook.css'
 import Select from '../../images/select3.png'
 import { Link } from 'react-router-dom'
+import URI from '../../URI'
 
 function CreateBook() {
      const [newBook, setNewBook] = useState({
@@ -32,7 +33,7 @@ function CreateBook() {
                formData.append("thumbnail", newBook.thumbnail);
                console.log(formData);
                
-               const res = await axios.post("http://localhost:5000/api/books", formData);
+               const res = await axios.post(`${URI}/api/books`, formData);
                if (res.data.success) {
                     setMsg(`Book Created Successfully!`);
                     setPost(true);

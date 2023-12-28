@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import './SingleBook.css'
+import URI from '../../URI'
 
 function SingleBook() {
   const [oneBook, setOneBook] = useState([]);
@@ -12,7 +13,7 @@ function SingleBook() {
   // console.log(params);
   // console.log(slug);
 
-  const url = `http://localhost:5000/api/books/${slug}`
+  const url = `${URI}/api/books/${slug}`
   
   useEffect(() => {
     
@@ -29,7 +30,7 @@ function SingleBook() {
     fetchBook()
   }, [])
   
-  const delurl = `http://localhost:5000/api/books/${oneBook._id}`
+  const delurl = `${URI}/api/books/${oneBook._id}`
 
   const deleteBook = async () => {
     try {

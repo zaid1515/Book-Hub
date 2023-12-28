@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './EditBook.css'
 import { Link, useParams } from 'react-router-dom'
+import URI from '../../URI'
 
 function EditBook() {
      const [book, setBook] = useState({})
@@ -14,7 +15,7 @@ function EditBook() {
 
           const currentBook=async()=>{
                try {
-                    const res=await axios.get(`http://localhost:5000/api/books/${slug}`)
+                    const res=await axios.get(`${URI}/api/books/${slug}`)
                     setBook(res.data.oneBook)
                } catch (error) {
                     console.error(error);

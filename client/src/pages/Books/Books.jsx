@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import BooksPic from '../../images/readpic2.png'
 import Loading from '../../components/Loading/Loading'
+import URI from '../../URI'
 
 function Books() {
      const [books, setBooks] = useState([])
@@ -13,7 +14,7 @@ function Books() {
      const [isLoading, setIsLoading] = useState(true);
      const [error, setError] = useState("")
 
-     const baseURL = "http://localhost:5000/api/books"
+     const baseURL = `${URI}/api/books`
      var url = baseURL;
      if (category && stars!=0) {
           url += `?category=${category}&stars=${stars}`

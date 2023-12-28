@@ -8,3 +8,16 @@
 button{
      cursor: pointer;
 }
+
+
+   textarea::-webkit-scrollbar {
+     width: 12px;
+   }
+ 
+   textarea::-webkit-scrollbar-thumb {
+     background-color: rgb(143, 142, 212);
+   }
+ 
+   textarea::-webkit-scrollbar-track {
+     background-color: rgb(255, 215, 215);
+   }
