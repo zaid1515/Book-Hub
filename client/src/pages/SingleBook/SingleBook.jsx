@@ -13,12 +13,12 @@ function SingleBook() {
   // console.log(params);
   // console.log(slug);
 
-  const url = `${URI}/api/books/${slug}`
   
   useEffect(() => {
     
     const fetchBook = async () => {
       try {
+        const url = `${URI}/api/books/${slug}`
         const res = await axios.get(url)
         
         console.log(res.data.oneBook);
@@ -30,10 +30,10 @@ function SingleBook() {
     fetchBook()
   }, [])
   
-  const delurl = `${URI}/api/books/${oneBook._id}`
-
+  
   const deleteBook = async () => {
     try {
+      const delurl = `${URI}/api/books/${oneBook._id}`
       const res = await axios.delete(delurl)
       
       setBookDelete(true);

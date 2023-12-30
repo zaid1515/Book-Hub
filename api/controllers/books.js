@@ -100,8 +100,9 @@ const deleteBook=async(req,res)=>{
      try {
 
           const {id:bookId}=req.params;
+          console.log(bookId);
           const book=await books.findById(bookId);
-          const thumbnail=book.thumbnail;
+          const thumbnail=book._doc.thumbnail;
           const filePath=`./uploads/${thumbnail}`
           fs.unlinkSync(path.join(__dirname,"../",filePath));
           const deleted=await books.findByIdAndDelete(bookId)
