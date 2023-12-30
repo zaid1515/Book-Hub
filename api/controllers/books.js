@@ -21,6 +21,7 @@ const getAllBooks = async (req, res) => {
           // console.log(allBooks);
           res.status(200).json({ allBooks });
      } catch (e) {
+          console.log(e);
           res.status(500).json({ msg: e });
      }
 };
@@ -36,6 +37,7 @@ const getOneBook = async (req, res) => {
                console.log(`Required book was found`);
           }
      } catch (e) {
+          console.error(e);
           res.status(500).json({msg:e});
      }
 };
@@ -61,8 +63,8 @@ const createBook = async (req, res) => {
         console.log(newBook);
         res.status(200).json({ success: true, book: newBook });
      } catch (error) {
-     //    console.error(error);
-        res.status(500).json({ success: false, msg: error.message });
+        console.error(error);
+        res.status(500).json({ success: false, msg: String (error )});
      }
   };
   
@@ -89,7 +91,8 @@ const updateBook=async(req,res)=>{
           console.log(updateBook);
           res.status(200).json({success:true,updatedbook:updatedbook})
      } catch (error) {
-          res.status(500).json({ success: false, msg: error.message });
+          console.log(error);
+          res.status(500).json({ success: false, msg: error });
      }
 }
 
@@ -107,8 +110,16 @@ const deleteBook=async(req,res)=>{
           res.status(200).json({success:true,msg:"Book Deleted successfully",deleteBook:deleted})
 
      } catch (error) {
-          res.status(500).json({ success: false, msg: error.message });
+          res.status(500).json({ success: false, msg: error });
      }
 }
 
-module.exports = { getAllBooks, getOneBook ,createBook,updateBook,deleteBook};
+const test=async(req,res)=>{
+     try {
+          console.log(__dirname);
+          res.status(200).json({success:true})
+     } catch (error) {
+          console.log(error);
+     }
+}
+module.exports = { getAllBooks, getOneBook ,createBook,updateBook,deleteBook,test};
