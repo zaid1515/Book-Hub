@@ -1,6 +1,5 @@
 [
   {
-    "_id": { "$oid": "6458f2660370b02a293447b0" },
     "title": "The Great Gatsby",
     "thumbnail": "the-great-gatsby.jpg",
     "slug": "the-great-gatsby",
@@ -9,7 +8,6 @@
     "category": ["romance", "science"]
   },
   {
-    "_id": { "$oid": "6458f2c50370b02a2934d5fc" },
     "title": "The Hobbit",
     "thumbnail": "the-hobbit.jpg",
     "slug": "the-hobbit",
@@ -18,7 +16,6 @@
     "category": ["crime", "food"]
   },
   {
-    "_id": { "$oid": "648ada707a15f23fa4ba9aa5" },
     "title": "Demon Copperhead",
     "thumbnail": "demon-copperhead.jpg",
     "slug": "demon-copperhead",
@@ -27,7 +24,6 @@
     "category": ["adventure"]
   },
   {
-    "_id": { "$oid": "648ae00a7a15f23fa4ba9aaa" },
     "title": "The Extra Mile",
     "thumbnail": "the-extra-mile.jpg",
     "slug": "the-extra-mile",
@@ -36,7 +32,6 @@
     "category": ["other", "food"]
   },
   {
-    "_id": { "$oid": "649ae53ea7fa4c85582e7724" },
     "title": "No One Saw a Thing",
     "thumbnail": "no-one-saw-a-thing.jpg",
     "slug": "no-one-saw-a-thing",
@@ -45,7 +40,6 @@
     "category": ["thriller", "crime"]
   },
   {
-    "_id": { "$oid": "649ae85da7fa4c85582e7727" },
     "title": "The Ink Black Heart",
     "thumbnail": "the-ink-black-heart.jpg",
     "slug": "the-ink-black-heart",
@@ -54,7 +48,6 @@
     "category": ["fiction"]
   },
   {
-    "_id": { "$oid": "649ae855a7fa4c85582e7726" },
     "title": "Harry Potter",
     "thumbnail": "harry-potter.jpg",
     "slug": "harry-potter",
@@ -64,7 +57,6 @@
   }
   ,
   {
-    "_id": { "$oid": "649aeab9a7fa4c85582e772a" },
     "title": "The 6:20 Man",
     "thumbnail": "the-6-20-man.jpg",
     "slug": "the-6-20-man",

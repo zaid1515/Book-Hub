@@ -13,7 +13,7 @@ import About from './pages/About/About'
 function App() {
   return (
     <>
-      <Router>
+      
         <Navbar />
         <Routes>
           <Route
@@ -42,7 +42,7 @@ function App() {
           />
         </Routes>
         <Footer />
-      </Router>
+      
     </>
   )
 }

@@ -123,12 +123,15 @@ const deleteBook = async (req, res) => {
 const pop_data = async (req, res) => {
      try {
           const del=await books.deleteMany({});
-          await Promise.all(data.map(async(single_data)=>{
-               const cloud_res = await cloudinary.uploader.upload(`../tmp/${single_data.thumbnail}`);
+          const newdata=await Promise.all(data.map(async(single_data)=>{
+               const cloud_res = await cloudinary.uploader.upload(`./tmp/${single_data.thumbnail}`);
                return {...single_data,thumbnail:cloud_res.url};
           }))
+          books.create(newdata)
+          res.status(200).json({success:true})
      } catch (error) {
           console.log(error);
+          res.status(500).json({success:false})
      }
 }
 module.exports = { getAllBooks, getOneBook, createBook, updateBook, deleteBook, pop_data };
