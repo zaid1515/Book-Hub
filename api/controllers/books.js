@@ -103,13 +103,14 @@ const deleteBook=async(req,res)=>{
           const book=await books.findById(bookId);
           const thumbnail=book.thumbnail;
           const filePath=`./uploads/${thumbnail}`
-          fs.unlinkSync(filePath);
+          fs.unlinkSync(path.join(__dirname,"../",filePath));
           const deleted=await books.findByIdAndDelete(bookId)
 
           console.log(deleted);
           res.status(200).json({success:true,msg:"Book Deleted successfully",deleteBook:deleted})
 
      } catch (error) {
+          console.log(error);
           res.status(500).json({ success: false, msg: error });
      }
 }
