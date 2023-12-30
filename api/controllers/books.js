@@ -3,6 +3,7 @@ const multer = require('multer')
 const path = require('path');
 const fs = require('fs');
 const cloudinary = require('../util/cloudinary');
+const data=require('../data.json');
 
 const getAllBooks = async (req, res) => {
      try {
@@ -119,12 +120,15 @@ const deleteBook = async (req, res) => {
      }
 }
 
-const test = async (req, res) => {
+const pop_data = async (req, res) => {
      try {
-          console.log(__dirname);
-          res.status(200).json({ success: true })
+          const del=await books.deleteMany({});
+          await Promise.all(data.map(async(single_data)=>{
+               const cloud_res = await cloudinary.uploader.upload(`../tmp/${single_data.thumbnail}`);
+               return {...single_data,thumbnail:cloud_res.url};
+          }))
      } catch (error) {
           console.log(error);
      }
 }
-module.exports = { getAllBooks, getOneBook, createBook, updateBook, deleteBook, test };
+module.exports = { getAllBooks, getOneBook, createBook, updateBook, deleteBook, pop_data };
