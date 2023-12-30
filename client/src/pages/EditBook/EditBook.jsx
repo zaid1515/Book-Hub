@@ -93,7 +93,7 @@ function EditBook() {
           <form onSubmit={updateBook} encType="multipart/form-data">
                <div className="newbook bookInput">
                     <div className="bookInputImg newbook-item">
-                          {newThumbnail?(<img src={URL.createObjectURL(book?.thumbnail)} alt="preview" />):(<img src={`${URI}/${book?.thumbnail}`} alt="preview" />)}
+                          {newThumbnail?(<img src={URL.createObjectURL(book?.thumbnail)} alt="preview" />):(<img src={`${book?.thumbnail}`} alt="preview" />)}
                     </div>
 
                     <div className="InpDetails newbook-item">

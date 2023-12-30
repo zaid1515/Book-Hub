@@ -64,7 +64,7 @@ function SingleBook() {
     <div className="onebook">
       <div className="bookContent">
         <div className="bookImg onebook-item">
-          <img src={`${URI}/${oneBook?.thumbnail}`} alt="" />
+          <img src={`${oneBook?.thumbnail}`} alt="" />
         </div>
         {bookDelete?(<p className='deleted'>Book Deleted Successfully</p>):
         (
