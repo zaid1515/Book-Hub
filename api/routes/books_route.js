@@ -15,8 +15,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+router.route('/test').get(test)
 router.route('/').get(getAllBooks).post(upload.single('thumbnail'), createBook);
 router.route('/:slug').get(getOneBook);
 router.route('/:id').put(upload.single('thumbnail') , updateBook).delete(deleteBook)
-router.route('/test').get(test)
 module.exports = router;
