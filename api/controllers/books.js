@@ -50,6 +50,7 @@ const createBook = async (req, res) => {
 
           //    console.log(req.file);
           //    console.log(req.body);
+          let cloud_res=null
           if (req.file) {
                
           const cloud_res = await cloudinary.uploader.upload(`/tmp/${req.file.filename}`);
