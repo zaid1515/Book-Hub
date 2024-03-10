@@ -50,10 +50,10 @@ const createBook = async (req, res) => {
 
           //    console.log(req.file);
           //    console.log(req.body);
-          let cloud_res=null
+          let cloud_res;
           if (req.file) {
                
-          const cloud_res = await cloudinary.uploader.upload(`/tmp/${req.file.filename}`);
+          cloud_res = await cloudinary.uploader.upload(`/tmp/${req.file.filename}`);
           }
           console.log(cloud_res);
           const newBook = await books.create({
@@ -63,7 +63,7 @@ const createBook = async (req, res) => {
                description: req.body.description,
                category: req.body.category,
                createdAt: req.body.createdAt,
-               thumbnail: null||cloud_res.url
+               thumbnail: cloud_res?cloud_res.url:null
           });
 
 
