@@ -1,3 +1,4 @@
+// to store images in cloudinary we use it as vercel does not allow file access and tmp folder is not for permanent storage
 const {v2 : cloudinary} =require('cloudinary');
           
 cloudinary.config({ 
