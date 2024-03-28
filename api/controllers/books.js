@@ -30,6 +30,7 @@ function endMemoryTracking(startHeapStatistics) {
 
 const getAllBooks = async (req, res) => {
      console.log(req.ip)
+     console.log(req.headers["x-forwarded-for"])
      const startHeapStatistics = startMemoryTracking();
      const startMemory = startMemoryTracking();
          const startTime = console.time();
