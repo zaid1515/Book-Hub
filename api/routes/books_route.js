@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { getAllBooks, getOneBook, createBook ,updateBook, deleteBook, pop_data} = require('../controllers/books');
 const multer = require('multer');
-const path =require('path')
+const path =require('path');
+const memoryLogger = require('../middlewares/loggerInfo');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

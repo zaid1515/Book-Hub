@@ -4,9 +4,37 @@ const path = require('path');
 const fs = require('fs');
 const cloudinary = require('../util/cloudinary');
 const data=require('../data.json');
+const { performance, PerformanceObserver } = require('perf_hooks');
+
+function startMemoryTracking() {
+    return process.memoryUsage().heapUsed;
+}
+
+function endMemoryTracking(startMemory) {
+    const endMemory = process.memoryUsage().heapUsed;
+    const memoryUsage = endMemory - startMemory;
+    return memoryUsage;
+}
+
+const v8 = require('v8');
+
+function startMemoryTracking() {
+    return v8.getHeapStatistics();
+}
+
+function endMemoryTracking(startHeapStatistics) {
+    const endHeapStatistics = v8.getHeapStatistics();
+    const memoryUsage = endHeapStatistics.used_heap_size - startHeapStatistics.used_heap_size;
+    return memoryUsage;
+}
 
 const getAllBooks = async (req, res) => {
+     console.log(req.ip)
+     const startHeapStatistics = startMemoryTracking();
+     const startMemory = startMemoryTracking();
+         const startTime = console.time();
      try {
+          
           console.log(req.query);
           const { category, stars } = req.query;
           // const stars = req.query.stars;
@@ -21,11 +49,18 @@ const getAllBooks = async (req, res) => {
 
           const allBooks = await books.find(filters);
           // console.log(allBooks);
+         
           res.status(200).json({ allBooks });
      } catch (e) {
           console.log(e);
           res.status(500).json({ msg: e });
      }
+     const endTime = console.timeEnd()
+     const memoryUsag = endMemoryTracking(startMemory);
+ 
+     console.log(`Memory usage for API call: ${memoryUsag/1000000} Megabytes`);
+     const memoryUsage = endMemoryTracking(startHeapStatistics);
+    console.log(`Memory usage for API call: ${memoryUsage/1000000} Megabytes`);
 };
 
 const getOneBook = async (req, res) => {
