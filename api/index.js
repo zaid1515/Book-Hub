@@ -9,6 +9,7 @@ const connectDB=require('./db/connect')
 const book=require('./routes/books_route')
 const path = require('path');
 const fs = require('fs');
+const logMiddleware = require('./middlewares/apiLogs');
 
 // cors is cross-origin-resource-sharing for fetching data from react-app
 app.use(cors())
@@ -17,6 +18,7 @@ app.use(express.json())
 // done to accept objects and arrays
 app.use(express.urlencoded({extended:true}))
 
+app.use(logMiddleware)
 // all routes with /api/book are forwarded to book file which has functions for the routes which is in routes folder
 app.use('/api/books',book)
 // configuring Express to serve static files (like images, CSS files, etc.) located in the "tmp" directory and make them accessible under the "/tmp" route
